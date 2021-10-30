@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<input type="button" value="测试" class="get">
+<script>
+    document.querySelector(".get").onclick=function(){
+        axios.get("https://localhost:8080/hello").then(function(response){
+            console.log(response);
+        })
+    }
+</script>
+</body>
+</html>

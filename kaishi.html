@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui@2.13.1/lib/theme-chalk/index.css">
+    <script src="http://unpkg.com/vue/dist/vue.js"></script>
+    <script src="http://unpkg.com/element-ui@2.13.1/lib/index.js"></script>
+</head>
+<body>
+<div>
+    头部
+</div>
+<div id="app">
+    <el-form ref="form"  :model="form" label-width="80px">
+        <div v-for="item in form">
+            <el-form-item v-if="item.type=='text'" >
+                {{item.name}}
+            </el-form-item>
+            <el-form-item v-if="item.type=='input'" >
+                {{item.name}}   <el-input type="input" v-module="item.id" ></el-input>
+            </el-form-item>
+            <el-form-item v-if="item.type=='textarea'" >
+                {{item.name}}    <el-input type="textarea"   v-module="form.item" ></el-input>
+            </el-form-item>
+            <el-form-item v-if="item.type=='upload'" >
+                {{item.name}}    <el-upload>
+                <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                                  </el-upload>
+            </el-form-item>
+        </div>
+            <el-form-item>
+                <el-button type="primary" @click="onSubmit">立即创建</el-button>
+                <el-button>取消</el-button>
+            </el-form-item>
+    </el-form>
+</div>
+<script>
+    var Main = {
+        data() {
+            return {
+                form:
+                    // name: '',
+                    // desc: ''
+           [   {type:'text',name:'需求简介',id:'xq',content:''},
+               {type:'textarea',name:'主要功能与要求简介',id:'gn',content:'你的'},
+               {type:'textarea',name:'主要技术（性能）参数简介',id:'js',content:'他的'},
+               {type:'upload',name:'图片',id:'pic'},
+           ],
+            }
+        },
+
+        methods: {
+            onSubmit() {
+                console.log('submit!');
+                // alert('form')
+
+            }
+        }
+    }
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+</script>
+</body>
+</html>
